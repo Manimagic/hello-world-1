@@ -1,9 +1,5 @@
-pipeline {
-    agent any
-    environment {
-        PATH = "/opt/apache-maven-3.6.3/bin:$PATH"
-    }
-    stages {
+node{
+     stages {
         stage("clone code"){
             steps{
                git credentialsId: 'git_credentials', url: 'https://github.com/ravdy/hello-world.git'
@@ -22,5 +18,4 @@ pipeline {
                 }
             }
         }
-    }
-}
+     }
