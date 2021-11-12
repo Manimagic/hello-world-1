@@ -9,10 +9,10 @@ pipeline {
                git credentialsId: 'git_credentials', url: 'https://github.com/ravdy/hello-world.git'
             }
         }
-        stage("build code"){
-            steps{
-              sh "mvn clean install"
-            }
+        stage("Maven Clean Build"){
+            def mavenHome = tool name:"Maven-3.6.1", type:"maven"
+            def mavenCMD = "${mavenHome}/bin/mvn "
+            sh "${mavenCMD} clean package"
         }
         stage("deploy"){
             steps{
